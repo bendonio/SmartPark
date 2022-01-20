@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `smartPark` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+USE `smartPark`;
 -- MySQL dump 10.13  Distrib 5.7.35, for Linux (x86_64)
 --
 -- Host: localhost    Database: smartPark
