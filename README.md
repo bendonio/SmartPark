@@ -5,8 +5,8 @@ The project is about a smart park, exploiting presence sensors to count the numb
 
 ## Installation, configuration and execution
 In order to execute the tests described in the report, the following steps are needed:
-- Download the entire folder and put it in the '''contiki-ng/examples''' folder.
-- Inside the '''smartPark-collector''' folder compile the collector with the following command:
-  '''bash
+- Download the entire folder and put it in the ```contiki-ng/examples``` folder.
+- Inside the ```smartPark-collector``` folder compile the collector with the following command:
+  ```bash
   mvn clean install
-  '''
+  ```
