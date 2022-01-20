@@ -1,7 +1,14 @@
 # SmartPark
 Project for the Internet of Things course of the MSc's degree in Computer Engineering at University of Pisa.
 
-The project is about a smart park, exploiting presence sensors to count the number of occupied/free park slots, smart traffic lights to visually understand if the park is full, and flame detectors to react as fast as possible to a possible fire detected in the park. 
+The project is about a smart park, exploiting presence sensors to count the number of occupied/free park slots, smart traffic lights to visually understand if the park is full, and flame detectors to react as fast as possible to a possible fire detected in the park.
+
+# Project structure
+- _br_ contains the source code of the border router
+- _coap-sensors_ contains the source code of smart park lots and smart traffic lights
+- _mqtt-sensor_ contains the source code of the flame detectors
+- _smartPark-collector_ cotains the source code of the Java collector
+- _simulations_ contains the files related to the tests presented in the report, chapter 3 
 
 ## Installation and execution
 In order to execute the test 1 described in the report, the following steps are needed:
