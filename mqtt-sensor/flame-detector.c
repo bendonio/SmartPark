@@ -10,7 +10,7 @@
 #include "dev/button-hal.h"
 #include "dev/leds.h"
 #include "os/sys/log.h"
-#include "mqtt-client.h"
+#include "flame-detector.h"
 #include "./utils/utils.h"
 
 #include <sys/time.h>
