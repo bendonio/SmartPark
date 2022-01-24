@@ -2,7 +2,7 @@
 #include "coap-engine.h"
 #include "dev/leds.h"
 #include "../utils/utils.h"
-#include "../resources/coap-traffic-light-alarm.h"
+#include "../alarm-rpcesses/coap-traffic-light-alarm.h"
 
 #include <string.h>
 
