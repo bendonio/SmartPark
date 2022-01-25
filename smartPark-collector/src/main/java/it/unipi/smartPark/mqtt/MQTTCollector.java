@@ -147,12 +147,12 @@ public class MQTTCollector implements MqttCallback{
 		
 		Map<String, Object> updateJsonObject = Utils.jsonParser(updateString);
 		
-        if(updateJsonObject == null){
-        	
-			System.out.println("[ERR  - MQTT Collector]: Malformed update!");
-			System.out.println();
-			return;
-        }
+		if(updateJsonObject == null){
+
+				System.out.println("[ERR  - MQTT Collector]: Malformed update!");
+				System.out.println();
+				return;
+		}
         
         String status = null;
         
