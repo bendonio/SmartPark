@@ -154,53 +154,53 @@ public class MQTTCollector implements MqttCallback{
 				return;
 		}
         
-        String status = null;
-        
-        if(updateJsonObject.containsKey("flameDetected")) {
-        	
-        	Boolean flameDetected = (Boolean) updateJsonObject.get("flameDetected");
-        	if(flameDetected) {
-        		// If a flame is detected --> decrease the counter counting the consecutive flame detected messages. 
-        		
-        		System.out.println("[INFO - MQTT Collector] : FLAME DETECTED!");
-        		System.out.println("[INFO - MQTT Collector] : Consecutive flame detected messages remaining before triggering the alarm system: " + 
-        							flameDetectedCounter + "!");
-        		System.out.println();
-        		flameDetectedCounter--;
-        		
-        		status = "high";
-        		
-        		if(flameDetectedCounter == 0) {
-        			// If the counter reached 0 --> fire detected --> start the alarm system
-        			
-        			SmartParkManager.setFireDetected(true);
-        			
-        			SmartParkManager.startAlarmSystem();
-        			
-        		}
-        		
-        	} else {
-        		flameDetectedCounter = INITIAL_VALUE_FLAME_DETECTED_COUNTER;
-        		
-        		status = "low";
-        	}
-        	
-        	Timestamp readingTimestamp = null;
-        	
-        	if(updateJsonObject.containsKey("timestamp")) {
-     	    	Double timestampDouble = (Double) updateJsonObject.get("timestamp");
-     	    	String timestampString = String.format("%.0f", Double.parseDouble(timestampDouble.toString()));
-     	    	
-     	    	readingTimestamp = new Timestamp(new BigDecimal(timestampString).longValue());
-     	    	
-     	    } else {
-     	    	readingTimestamp = new Timestamp(System.currentTimeMillis());
-     	    }
-    		
-    		TelemetryDatabaseHandler.saveUpdate("flame_detector", readingTimestamp, flameDetectorID, status);
-        }
-        
-        System.out.println();
+		String status = null;
+
+		if(updateJsonObject.containsKey("flameDetected")) {
+
+			Boolean flameDetected = (Boolean) updateJsonObject.get("flameDetected");
+			if(flameDetected) {
+				// If a flame is detected --> decrease the counter counting the consecutive flame detected messages. 
+
+				System.out.println("[INFO - MQTT Collector] : FLAME DETECTED!");
+				System.out.println("[INFO - MQTT Collector] : Consecutive flame detected messages remaining before triggering the alarm system: " + 
+									flameDetectedCounter + "!");
+				System.out.println();
+				flameDetectedCounter--;
+
+				status = "high";
+
+				if(flameDetectedCounter == 0) {
+					// If the counter reached 0 --> fire detected --> start the alarm system
+
+					SmartParkManager.setFireDetected(true);
+
+					SmartParkManager.startAlarmSystem();
+
+				}
+
+			} else {
+				flameDetectedCounter = INITIAL_VALUE_FLAME_DETECTED_COUNTER;
+
+				status = "low";
+			}
+
+			Timestamp readingTimestamp = null;
+
+			if(updateJsonObject.containsKey("timestamp")) {
+			Double timestampDouble = (Double) updateJsonObject.get("timestamp");
+			String timestampString = String.format("%.0f", Double.parseDouble(timestampDouble.toString()));
+
+			readingTimestamp = new Timestamp(new BigDecimal(timestampString).longValue());
+
+		    } else {
+			readingTimestamp = new Timestamp(System.currentTimeMillis());
+		    }
+
+			TelemetryDatabaseHandler.saveUpdate("flame_detector", readingTimestamp, flameDetectorID, status);
+		}
+
+		System.out.println();
 		
 	}
 
@@ -227,25 +227,25 @@ public class MQTTCollector implements MqttCallback{
 		
 		Map<String, Object> registrationJsonObject = Utils.jsonParser(registrationString);
 		
-        if(registrationJsonObject == null){
-        	
-			System.out.println("[ERR  - MQTT Collector]: Registration failed, BAD REQUEST!");
-			return null;
-        }
+		if(registrationJsonObject == null){
+
+				System.out.println("[ERR  - MQTT Collector]: Registration failed, BAD REQUEST!");
+				return null;
+		}
         
-        if(registrationJsonObject.containsKey("flameDetectorID")) {
-        	// Insert the flame detector among the registered flame detectors
-        	
-        	String flameDetectorID = (String) registrationJsonObject.get("flameDetectorID");
-        	SmartParkManager.getRegisteredFlameDetectors().put(flameDetectorID, false);
-        	
-        	System.out.println("[INFO - MQTT Collector] : Added flameDetectorID" + ": " + flameDetectorID + " to the list of registered Flame Detectors");
-        	System.out.println();
-        	
-        	return flameDetectorID;
-        }
+		if(registrationJsonObject.containsKey("flameDetectorID")) {
+			// Insert the flame detector among the registered flame detectors
+
+			String flameDetectorID = (String) registrationJsonObject.get("flameDetectorID");
+			SmartParkManager.getRegisteredFlameDetectors().put(flameDetectorID, false);
+
+			System.out.println("[INFO - MQTT Collector] : Added flameDetectorID" + ": " + flameDetectorID + " to the list of registered Flame Detectors");
+			System.out.println();
+
+			return flameDetectorID;
+		}
         
-        return null;
+        	return null;
 		
 	}
 
