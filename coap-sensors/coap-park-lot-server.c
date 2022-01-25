@@ -111,8 +111,6 @@ bool have_connectivity(){
   
 }
 
-// TODO: Move this function inside a utility folder.
-// If I move to the utils.h I got "undefined symbol get_random_value" error
 int get_random_value(int min, int max){
 
   return (rand() % (max - min + 1)) + min;
