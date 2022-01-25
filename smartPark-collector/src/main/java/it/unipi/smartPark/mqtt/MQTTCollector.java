@@ -89,10 +89,10 @@ public class MQTTCollector implements MqttCallback{
 						//If this is an update from a flame detector, handle it only if no fire is still detected.
 						if(!SmartParkManager.getFireDetected()) {
 							new Thread(new Runnable() {
-					            @Override
-					            public void run() {
-					            	handleFlameDetectedUpdate(payloadString, flameDetectorID);
-					            }
+							    @Override
+							    public void run() {
+								handleFlameDetectedUpdate(payloadString, flameDetectorID);
+							    }
 							}).run();
 						
 						}
