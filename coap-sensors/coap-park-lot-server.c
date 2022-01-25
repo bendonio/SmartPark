@@ -208,6 +208,8 @@ PROCESS_THREAD(coap_park_server, ev, data)
 
             registration_sent = true;
             
+          } else if(registration_sent && !registered){
+            etimer_stop(&next_car_event_timer);
           }
         }
 
